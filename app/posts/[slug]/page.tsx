@@ -65,7 +65,7 @@ export default async function PostPage(
                    prose-headings:font-semibold
                    prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
                    prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded
-                   prose-pre:bg-gray-950 prose-pre:text-gray-100"
+                   prose-pre:bg-gray-100 prose-pre:text-gray-900"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
     </article>

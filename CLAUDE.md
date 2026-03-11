@@ -25,7 +25,7 @@ posts/*.md  →  lib/posts.ts  →  app/page.tsx (listing)
 
 `lib/posts.ts` is the single data layer:
 - `getAllPosts()` — synchronous; reads all `.md` files, parses frontmatter with `gray-matter`, returns `PostMeta[]` sorted newest-first
-- `getPostBySlug(slug)` — async; also runs the markdown body through `remark` + `remark-html` to produce `contentHtml`
+- `getPostBySlug(slug)` — async; runs the markdown body through `remark` + `remark-html` (`sanitize: false`) to produce `contentHtml`
 
 Both pages are React Server Components with no client-side data fetching.
 
@@ -54,3 +54,46 @@ The slug is derived from the filename (e.g. `my-post.md` → `/posts/my-post`). 
 ### Styling
 
 Tailwind CSS with `@tailwindcss/typography`. The `prose` utility class in the post page styles all raw HTML output from remark (headings, code blocks, links, etc.) without hand-targeting elements.
+
+# Unicorn Studio Integration
+
+I want to embed a Unicorn Studio WebGL scene into my project.
+
+**Project ID:** `DQAxZZ5IK1QPCHyuQu3C`
+**SDK Version:** `2.1.3`
+
+## For React / Next.js
+
+Install the package:
+```bash
+npm install unicornstudio-react
+```
+
+**Next.js** (App Router or Pages Router):
+```jsx
+import UnicornScene from "unicornstudio-react/next";
+
+export default function MyComponent() {
+  return (
+    <UnicornScene 
+      projectId="DQAxZZ5IK1QPCHyuQu3C" 
+      sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.3/dist/unicornStudio.umd.js"
+      width="100%" 
+      height="400px" 
+    />
+  );
+}
+```
+
+## Important Notes
+
+- The container element needs explicit width and height to render properly
+- Use `scale` (0.25-1) to improve performance on slower devices
+- Set `lazyLoad: true` to defer loading until visible in viewport
+- For production, add `production: true` to enable CDN caching
+
+## Links
+- React Package: https://www.npmjs.com/package/unicornstudio-react
+- SDK Docs: https://github.com/hiunicornstudio/unicornstudio.js
+- Full Guide: https://www.unicorn.studio/docs/embed/
+- Performance Guide: https://www.unicorn.studio/docs/performance/

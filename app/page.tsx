@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import UnicornScene from 'unicornstudio-react/next'
 import { getAllPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
@@ -20,6 +21,15 @@ export default function HomePage() {
 
   return (
     <div>
+      <div className="fixed inset-0 -z-10">
+        <UnicornScene
+          projectId="DQAxZZ5IK1QPCHyuQu3C"
+          sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.3/dist/unicornStudio.umd.js"
+          width="100%"
+          height="100%"
+        />
+      </div>
+
       <h1 className="text-3xl font-bold tracking-tight mb-10">All Posts</h1>
 
       {posts.length === 0 && (
